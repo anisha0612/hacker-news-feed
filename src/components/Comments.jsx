@@ -1,22 +1,30 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
+import EachComment from "./EachComment.jsx";
+import PropTypes from "prop-types";
 
 const Comments = ({ comments }) => {
   // console.log(comments);
   return (
     <div>
-      {comments.map((comment) => (
+      {comments.length > 0 ? (
+        <>
+          {comments.map((comment) => (
+            <div key={comment.id}>
+              <EachComment {...comment} />
+            </div>
+          ))}
+        </>
+      ) : (
         <div>
-          <ListGroup className='my-4'>
-            <ListGroup.Item>
-              {comment.text}
-              <p className='text-secondary bold-text'>By {comment.by}</p>
-            </ListGroup.Item>
-          </ListGroup>
+          <p className='lead my-2'>Loading ...</p>
         </div>
-      ))}
+      )}
     </div>
   );
 };
 
 export default Comments;
+
+Comments.propTypes = {
+  comments: PropTypes.array.isRequired,
+};

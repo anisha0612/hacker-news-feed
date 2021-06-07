@@ -1,6 +1,6 @@
 import React from "react";
 import Stories from "./components/Stories/Stories.jsx";
-import { StoryProvider } from "./components/StoryContext.js";
+import { StoryProvider } from "./context/StoryContext.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 

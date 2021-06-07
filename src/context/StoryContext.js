@@ -7,8 +7,6 @@ export const StoryProvider = (props) => {
   const [storyIDs, setStoryIDs] = useState([]);
   const [stories, setStories] = useState([]);
 
-  // const [comments, setComments] = useState([]);
-
   useEffect(() => {
     // Fetch all the top stories ( only IDs) from the Hacker news API
     const fetchStoriesIDs = async () => {
@@ -18,8 +16,6 @@ export const StoryProvider = (props) => {
       setStoryIDs(data);
       fetchStories();
     };
-
-    // Fetch all the top stories from the API with the above fetched story IDS
     const fetchStories = async () => {
       const promises = storyIDs.map((storyID) =>
         axios
@@ -27,12 +23,11 @@ export const StoryProvider = (props) => {
             `https://hacker-news.firebaseio.com/v0/item/${storyID}.json?print=pretty`
           )
           .then((response) => response.data)
+          .catch((err) => console.error(err))
       );
       const result = await Promise.all(promises);
-      // console.log(result);
       setStories(result);
     };
-
     fetchStoriesIDs();
   }, [storyIDs]);
 
