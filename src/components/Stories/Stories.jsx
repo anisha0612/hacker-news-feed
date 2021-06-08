@@ -6,12 +6,18 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import PropTypes from "prop-types";
 import "./Stories.css";
 
+/* Stories component - handles stories fetched from the API */
+
 const Stories = () => {
   const { stories } = useContext(StoryContext);
+  // boolean variable used to check if there are more stories to fetch on scroll
   const [hasMore, setHasMore] = useState(true);
+  // Variable to handle the count of stories fetched
   const [fetchedStories, setFetchedStories] = useState(0);
+  // array to store the stories fetched after "fetchMoreData" is called
   const [items, setItems] = useState([]);
 
+  // Callback function that is run to fetch the next set of stories and is stored in  a new array
   function fetchMoreData() {
     const fetchItems = stories.slice(fetchedStories, fetchedStories + 2);
     setFetchedStories(fetchedStories + 2);
@@ -33,7 +39,6 @@ const Stories = () => {
   return (
     <>
       <h1 className='title orange text-uppercase bold-text'>
-        {" "}
         Hacker News Feed
       </h1>
 

@@ -16,6 +16,7 @@ export const StoryProvider = (props) => {
       setStoryIDs(data);
       fetchStories();
     };
+    // Fetch all the top stories from the Hacker news API using the above fetched storyIDs
     const fetchStories = async () => {
       const promises = storyIDs.map((storyID) =>
         axios
@@ -31,11 +32,26 @@ export const StoryProvider = (props) => {
     fetchStoriesIDs();
   }, [storyIDs]);
 
+  const fetchComments = async (story, setComments) => {
+    const promises = story.kids.map((commentID) =>
+      axios
+        .get(
+          `https://hacker-news.firebaseio.com/v0/item/${commentID}.json?print=pretty`
+        )
+        .then((response) => response.data)
+        .catch((err) => console.error(err))
+    );
+    const result = await Promise.all(promises);
+    // console.log(result);
+    setComments(result);
+  };
+
   return (
     <StoryContext.Provider
       value={{
         storyIDs,
         stories,
+        fetchComments,
       }}>
       {props.children}
     </StoryContext.Provider>

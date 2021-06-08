@@ -2,10 +2,12 @@ import React from "react";
 import { ListGroup } from "react-bootstrap";
 import PropTypes from "prop-types";
 
+// EachComment component displays the each child comment for the parent parent story received as prop
 const EachComment = ({ id, text, by }) => {
   //   console.log(id, text, by);
   return (
     <>
+      {/* conditional to check if the props are null and display the data accordingly */}
       {id !== "null" && text !== "null" && by !== "null" ? (
         <ListGroup className='my-4'>
           <ListGroup.Item>

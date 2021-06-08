@@ -13,3 +13,20 @@
 .orange{
   color: rgb(255, 136, 0);
 }
+.btn-outline-warning:hover {
+
+  background-color: rgb(255, 136, 0);
+  color: white;
+}
+
+.comments{
+  color:rgb(22, 174, 245)
+}
+.comments:hover{
+  color:rgb(22, 139, 194)
+}
+
+.btn:active,.btn:focus{
+  outline: none !important;
+  box-shadow: none;
+}

@@ -3,9 +3,10 @@
 }
 
 .story-card{
-    margin:2em
+    margin:2em ;
 }
 
 
-
-
+.yellow{
+    color:rgb(255, 189, 6)
+}
